@@ -8,7 +8,7 @@ $(function() {
 		var bot = '<li class="collection-item avatar"><i class="material-icons circle green">navigation</i><span class="title">';
 		var bot_end = '</span></li>';
 		
-
+		
 		$('.conversation').append(box);
 	    	$.ajax({
             url: '/response',
@@ -18,11 +18,15 @@ $(function() {
             	console.log(response);
                 reply = bot + response['text'] + bot_end;
                 $('.conversation').append(reply);
+                var objDiv = document.getElementById("chat_history");
+        console.log(objDiv.scrollTop)
+		objDiv.scrollTop = objDiv.scrollHeight;
             },
             error: function(error) {
                 console.log(error);
             }
         });
+        
 		//$('.conversation').append(bot);
 		// $.getJSON('/message', {
 		// 	clientmsg: userMessage
@@ -32,8 +36,8 @@ $(function() {
 		
 		// Empty the text in input box
 		$('#userMessage').val(""); 
-		
 		return false;	
 	});
+	
 });
 
